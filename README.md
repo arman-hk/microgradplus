@@ -4,7 +4,7 @@
 micrograd plus: a lean, but mean, autograd engine that hopefully will extend the [micrograd](https://github.com/karpathy/micrograd)..?
 
 ### Micrograd Notebook Todo
-* [x] Add power function
-* [x] Add relu function
-* [x] Add negative function
-* [x] Add subtraction
+* [ ] Add reverse add
+* [ ] Add reverse mul
+* [ ] Add reverse sub
+* [ ] Add true division
