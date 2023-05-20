@@ -1,7 +1,7 @@
 # micrograd plus
 ![](/puppy/puppy.jpg)
 
-micrograd plus is a lean, mean autograd engine that hopefully extends [micrograd](https://github.com/karpathy/micrograd).
+micrograd plus is a lean, but mean autograd engine that hopefully extends [micrograd](https://github.com/karpathy/micrograd).
 
 #### Features
 * [ ] Extended Operations (Logarithm, Trigonometric Functions, Activation Functions)
@@ -15,4 +15,4 @@ micrograd plus is a lean, mean autograd engine that hopefully extends [micrograd
 * [x] Study Micrograd and write it's [notebook](micrograd/micrograd.ipynb)
 
 #### License
-This project is licensed under the terms of the [MIT License]().
+This project is licensed under the terms of the [MIT License](/LICENSE).
