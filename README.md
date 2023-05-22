@@ -12,7 +12,6 @@ micrograd plus is a lean, but mean autograd engine that hopefully extends [micro
 * [ ] Example Notebooks for Machine Learning Problems
 
 #### Tasks
-* [x] Study Micrograd and write it's [notebook](micrograd/micrograd.ipynb)
-
+* [x] Vectorized Operations: The Value class in [engine.py](/microgradplus/engine.py) has been updated to support NumPy arrays. The gradient is also stored as a NumPy array, and a gradient function can be provided to compute the gradient of complex operations.
 #### License
 This project is licensed under the terms of the [MIT License](/LICENSE).
