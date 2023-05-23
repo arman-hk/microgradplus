@@ -15,15 +15,15 @@ class Value:
         if isinstance(other, (int, float)):
             other = Value(other)
         
-    def _grad_fn():
-        if self.grad is None:
-            self.grad = np.zeros_like(self.data)
-        if other.grad is None:
-            other.grad = np.zeros_like(other.data)
-        self.grad += 1 * out.grad
-        other.grad += 1 * out.grad
+        def _grad_fn():
+            if self.grad is None:
+                self.grad = np.zeros_like(self.data)
+            if other.grad is None:
+                other.grad = np.zeros_like(other.data)
+            self.grad += 1 * out.grad
+            other.grad += 1 * out.grad
 
-        
+            
         out = Value(self.data + other.data, (self, other), _grad_fn)
         return out
         
