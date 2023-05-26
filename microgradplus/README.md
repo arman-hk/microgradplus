@@ -3,3 +3,4 @@
 - [x] `__repr__`: repr function to display the data and it's gradient when printed
 - [x] `__add__`: add function with it's grad function
 - [x] `Context`: ctx to store the arrays for backprop
+- [x] `backward`: backward pass of the computation, calculating gradients for all nodes in the computation graph by chain rule
