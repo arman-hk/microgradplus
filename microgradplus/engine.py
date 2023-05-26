@@ -15,7 +15,7 @@ class Value:
     
     def __init__(self, data, _children=(), _grad_fn=None):
         self.data = np.array(data)
-        self.grad = None
+        self.grad = np.zeros_like(data)
         # internal variables
         self._prev = set(_children)
         self._grad_fn = _grad_fn
@@ -28,10 +28,6 @@ class Value:
         
         def _grad_fn():
             self_data, other_data = ctx.saved_arrays.values()
-            if self.grad is None:
-                self.grad = np.zeros_like(self_data)
-            if other.grad is None:
-                other.grad = np.zeros_like(other_data)
             self.grad += 1 * out.grad
             other.grad += 1 * out.grad
     
