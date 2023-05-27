@@ -21,27 +21,36 @@ class Value:
         self._grad_fn = _grad_fn
     
     def __add__(self, other):
-        if isinstance(other, (int, float)):
-            other = Value(other)
+        other = other if isinstance(other, Value) else Value(other)
         ctx = Context()
         ctx.save_for_backward(self.data, other.data)
-        
+
         def _grad_fn(grad):
             self_data, other_data = ctx.saved_arrays.values()
             self.grad += grad
             other.grad += grad
-    
         out = Value(self.data + other.data, (self, other), _grad_fn)
         return out
+    
+    def __mul__(self, other):
+        other = other if isinstance(other, Value) else Value(other)
+        ctx = Context()
+        ctx.save_for_backward(self.data, other.data)
 
+        def _grad_fn(grad):
+            self_data, other_data = ctx.saved_arrays.values()
+            self.grad += other_data * grad
+            other.grad += self_data * grad
+        out = Value(self.data * other.data, (self, other), _grad_fn)
+        return out
+    
     def backward(self, grad=None):
-        if grad is None:
-            grad = np.ones_like(self.data)
+        if grad is None: grad = np.ones_like(self.data)
         self.grad = grad
-        if self._grad_fn is not None:
-            self._grad_fn(grad)
+        if self._grad_fn is not None: self._grad_fn(grad)
+        # topo
         for child in self._prev:
-            child.backward(grad)
+            child.backward(child.grad)
  
     def __repr__(self):
         return f"Value(data={self.data}, grad={self.grad})"
