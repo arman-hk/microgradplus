@@ -55,7 +55,7 @@ class Value:
             other.grad += np.sum((self.data ** other_data * np.log(self_data)) * grad)
         out = Value(self.data ** other.data, (self, other), _grad_fn)
         return out
-    
+
     def backward(self, grad=None):
         if grad is None: grad = np.ones_like(self.data)
         self.grad = grad
@@ -63,6 +63,10 @@ class Value:
         # topo
         for child in self._prev:
             child.backward(child.grad)
+
+    def __neg__(self): return self * -1
+
+    def __sub__(self, other): return self + (-other)
  
     def __repr__(self):
         return f"Value(data={self.data}, grad={self.grad})"
