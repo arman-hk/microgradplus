@@ -57,16 +57,27 @@ class Value:
         return out
 
     def backward(self, grad=None):
-        if grad is None: grad = np.ones_like(self.data)
+        if grad is None: grad = np.ones_like(self.data, dtype=float)
         self.grad = grad
         if self._grad_fn is not None: self._grad_fn(grad)
         # topo
         for child in self._prev:
             child.backward(child.grad)
 
-    def __neg__(self): return self * -1
+    def __neg__(self):
+        def _grad_fn(grad):
+            self.grad -= grad
+        out = Value(-self.data, (self,), _grad_fn)
+        return out
 
-    def __sub__(self, other): return self + (-other)
+    def __sub__(self, other):
+        other = other if isinstance(other, Value) else Value(other)
+        
+        def _grad_fn(grad):
+            self.grad += grad
+            other.grad -= grad
+        out = Value(self.data - other.data, (self, other), _grad_fn)
+        return out
  
     def __repr__(self):
         return f"Value(data={self.data}, grad={self.grad})"
