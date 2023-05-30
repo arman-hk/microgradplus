@@ -78,6 +78,18 @@ class Value:
             other.grad -= grad
         out = Value(self.data - other.data, (self, other), _grad_fn)
         return out
- 
+
+    def __truediv__(self, other):
+        other = other if isinstance(other, Value) else Value(other)
+        ctx = Context()
+        ctx.save_for_backward(self.data, other.data)
+
+        def _grad_fn(grad):
+            self_data, other_data = ctx.saved_arrays.values()
+            self.grad += grad / other_data
+            other.grad += -self_data / (other_data ** 2) * grad
+        out = Value(self.data / other.data, (self, other), _grad_fn)
+        return out
+
     def __repr__(self):
         return f"Value(data={self.data}, grad={self.grad})"
