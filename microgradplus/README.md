@@ -1,10 +1,11 @@
 #### [engine.py](/microgradplus/engine.py)
 - [x] `_grad_fn`: to store the gradient calculation logic specific to the operation that produced the `Value`
 - [x] `__repr__`: repr operator to display the data and it's gradient when printed
-- [x] `__add__`: adding operator with it's grad function
+- [x] `__add__`: addition operator with grad func(works on scalars, arrays, and matrices)
 - [x] `Context`: ctx to store the arrays for backprop
 - [x] `backward`: backward pass of the computation, calculating gradients for all nodes in the computation graph by chain rule
-- [x] `__mul__`: element-wise multiplication works for both scalars and matrices (needed for relu, dropout).
-- [x] `__pow__`: fast power function that works between all type of inputs(check [test](/microgradplus/test.py))
-- [x] `__neg__`: negation operator with new grad func(solves broadcating problems)
-- [x] `__sub__`: subtraction operator with new grad func(solves broadcating problems)
+- [x] `__mul__`: element-wise multiplication operator with grad func(works on scalars, arrays, and matrices)
+- [x] `__pow__`: fast power function with grad func(works on scalars, arrays, and matrices)
+- [x] `__neg__`: negation operator with grad func(works on scalars, arrays, and matrices)
+- [x] `__sub__`: subtraction operator with grad func(works on scalars, arrays, and matrices)
+- [x] `__truediv`: true division operator with grad func(works on scalars, arrays, and matrices)
