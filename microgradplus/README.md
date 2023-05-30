@@ -6,5 +6,5 @@
 - [x] `backward`: backward pass of the computation, calculating gradients for all nodes in the computation graph by chain rule
 - [x] `__mul__`: element-wise multiplication works for both scalars and matrices (needed for relu, dropout).
 - [x] `__pow__`: fast power function that works between all type of inputs(check [test](/microgradplus/test.py))
-- [x] `__neg__`: negation operator that depends on `__mul__`
-- [x] `__neg__`: subtraction operator that depends on `__add__` and `__mul__`
+- [x] `__neg__`: negation operator with new grad func(solves broadcating problems)
+- [x] `__sub__`: subtraction operator with new grad func(solves broadcating problems)
