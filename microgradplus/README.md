@@ -8,4 +8,5 @@
 - [x] `__pow__`: fast power function with grad func(works on scalars, arrays, and matrices)
 - [x] `__neg__`: negation operator with grad func(works on scalars, arrays, and matrices)
 - [x] `__sub__`: subtraction operator with grad func(works on scalars, arrays, and matrices)
-- [x] `__truediv`: true division operator with grad func(works on scalars, arrays, and matrices)
+- [x] `__truediv__`: true division operator with grad func(works on scalars, arrays, and matrices)
+- [x] `sqrt`: square root fucntion with grad func(works on scalars, arrays, and matrices)
