@@ -56,13 +56,6 @@ class Value:
         out = Value(self.data ** other.data, (self, other), _grad_fn)
         return out
 
-    def backward(self, grad=None):
-        if grad is None: grad = np.ones_like(self.data, dtype=float)
-        self.grad = grad
-        if self._grad_fn is not None: self._grad_fn(grad)
-        # topo
-        for child in self._prev:
-            child.backward(child.grad)
 
     def __neg__(self):
         def _grad_fn(grad):
@@ -90,6 +83,20 @@ class Value:
             other.grad += -self_data / (other_data ** 2) * grad
         out = Value(self.data / other.data, (self, other), _grad_fn)
         return out
+
+    def sqrt(self):
+        def _grad_fn(grad):
+            self.grad += grad / (2 * np.sqrt(self.data))
+        out = Value(np.sqrt(self.data), (self,), _grad_fn)
+        return out
+
+    def backward(self, grad=None):
+        if grad is None: grad = np.ones_like(self.data, dtype=float)
+        self.grad = grad
+        if self._grad_fn is not None: self._grad_fn(grad)
+        # topo
+        for child in self._prev:
+            child.backward(child.grad)
 
     def __repr__(self):
         return f"Value(data={self.data}, grad={self.grad})"
