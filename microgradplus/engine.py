@@ -90,6 +90,12 @@ class Value:
         out = Value(np.sqrt(self.data), (self,), _grad_fn)
         return out
 
+    def exp(self):
+        def _grad_fn(grad):
+            self.grad += np.exp(self.data) * grad
+        out = Value(np.exp(self.data), (self,), _grad_fn)
+        return out
+
     def backward(self, grad=None):
         if grad is None: grad = np.ones_like(self.data, dtype=float)
         self.grad = grad
