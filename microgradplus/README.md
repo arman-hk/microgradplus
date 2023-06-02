@@ -10,3 +10,4 @@
 - [x] `__sub__`: subtraction operator with grad func(works on scalars, arrays, and matrices)
 - [x] `__truediv__`: true division operator with grad func(works on scalars, arrays, and matrices)
 - [x] `sqrt`: square root fucntion with grad func(works on scalars, arrays, and matrices)
+- [x] `exp`: exponential function with grad func(works on scalars, arrays, and matrices)
