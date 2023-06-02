@@ -1,14 +1,15 @@
 #### [engine.py](/microgradplus/engine.py)
 - [x] `_grad_fn`: to store the gradient calculation logic specific to the operation that produced the `Value`
 - [x] `__repr__`: repr operator to display the data and it's gradient when printed
-- [x] `__add__`: addition operator with grad func(works on scalars, arrays, and matrices)
+- [x] `__add__`: addition operator with grad func(works on scalars, and arrays)
 - [x] `Context`: ctx to store the arrays for backprop
 - [x] `backward`: backward pass of the computation, calculating gradients for all nodes in the computation graph by chain rule
-- [x] `__mul__`: element-wise multiplication operator with grad func(works on scalars, arrays, and matrices)
-- [x] `__pow__`: fast power function with grad func(works on scalars, arrays, and matrices)
-- [x] `__neg__`: negation operator with grad func(works on scalars, arrays, and matrices)
-- [x] `__sub__`: subtraction operator with grad func(works on scalars, arrays, and matrices)
-- [x] `__truediv__`: true division operator with grad func(works on scalars, arrays, and matrices)
-- [x] `sqrt`: square root fucntion with grad func(works on scalars, arrays, and matrices)
-- [x] `exp`: exponential function with grad func(works on scalars, arrays, and matrices)
-- [x] `log`: natural logarithm function with grad func(works on scalars, arrays, and matrices)
+- [x] `__mul__`: element-wise multiplication operator with grad func(works on scalars, and arrays)
+- [x] `__pow__`: fast power function with grad func(works on scalars, and arrays)
+- [x] `__neg__`: negation operator with grad func(works on scalars, and arrays)
+- [x] `__sub__`: subtraction operator with grad func(works on scalars, and arrays)
+- [x] `__truediv__`: true division operator with grad func(works on scalars, and arrays)
+- [x] `sqrt`: square root fucntion with grad func(works on scalars, and arrays)
+- [x] `exp`: exponential function with grad func(works on scalars, and arrays)
+- [x] `log`: natural logarithm function with grad func(works on scalars, and arrays)
+- [x] `abs`: absolute function with grad func(works on scalars, and arrays)
