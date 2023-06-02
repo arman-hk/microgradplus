@@ -102,6 +102,12 @@ class Value:
         out = Value(np.log(self.data), (self,), _grad_fn)
         return out
 
+    def abs(self):
+        def _grad_fn(grad):
+            self.grad += np.sign(self.data) * grad
+        out = Value(np.abs(self.data), (self,), _grad_fn)
+        return out
+
     def backward(self, grad=None):
         if grad is None: grad = np.ones_like(self.data, dtype=float)
         self.grad = grad
