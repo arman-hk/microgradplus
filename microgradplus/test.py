@@ -1,7 +1,8 @@
 from engine import Value
 
-a = Value([1, 2, 3])
-c = Value.abs(a)
+a = Value([-1, 0, 1, 2, 3])
+c = Value.relu(a)
 c.backward()
+
 print(f"a = {a}")
-print(f"c = abs(a) = {c}")
+print(f"c = relu(a) = {c}")
