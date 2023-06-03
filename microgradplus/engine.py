@@ -108,6 +108,12 @@ class Value:
         out = Value(np.abs(self.data), (self,), _grad_fn)
         return out
 
+    def relu(self):
+        def _grad_fn(grad):
+            self.grad += (self.data > 0) * grad
+        out = Value(np.maximum(0, self.data), (self,), _grad_fn)
+        return out
+
     def backward(self, grad=None):
         if grad is None: grad = np.ones_like(self.data, dtype=float)
         self.grad = grad
