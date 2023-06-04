@@ -14,3 +14,4 @@
 - [x] `log`: natural logarithm function with it's grad func(works on scalars, and arrays)
 - [x] `abs`: absolute function with it's grad func(works on scalars, and arrays)
 - [x] `relu`: rectified linear unit function with it's grad func(works on scalars, and arrays)
+- [x] `sigmoid`: element-wise sigmoid function with it's grad func(works on scalars, and arrays)

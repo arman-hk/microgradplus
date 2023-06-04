@@ -7,21 +7,17 @@ d = c * b
 e = d / a
 f = e - b
 g = f ** 2
-h = g.exp()
-i = Value.sqrt(h)
-j = i.abs()
-k = Value.relu(j)
+h = Value.sqrt(g)
+i = Value.sigmoid(h)
 
-k.backward()
+i.backward()
 
 print(f"a = {a}")
 print(f"b = {b}")
-print(f"c = {c}")
-print(f"d = {d}")
-print(f"e = {e}")
-print(f"f = {f}")
-print(f"g = {g}")
-print(f"h = {h}")
-print(f"i = {i}")
-print(f"j = {j}")
-print(f"k = {k}")
+print(f"c = a + b = {c}")
+print(f"d = c * b = {d}")
+print(f"e = d / a = {e}")
+print(f"f = e - b = {f}")
+print(f"g = f ** 2 = {g}")
+print(f"h = sqrt(g) = {h}")
+print(f"i = sigmoid(h) = {i}")
