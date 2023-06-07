@@ -110,6 +110,23 @@ class Value:
         out = Value(np.abs(self.data), (self,), _grad_fn)
         return out
 
+    def __matmul__(self, other):
+        if isinstance(other, (int, float)):
+            other = Value(other)
+        
+        def _grad_fn(grad):
+            self.grad += grad @ other.data.T
+            other.grad += self.data.T @ grad
+
+        out = Value(self.data @ other.data, (self, other), _grad_fn)
+        return out
+
+    def __rmatmul__(self, other):
+        if isinstance(other, (int, float)):
+            other = Value(other)
+        
+        return other @ self
+
     def relu(self):
         def _grad_fn(grad):
             self.grad += (self.data > 0) * grad
