@@ -15,6 +15,8 @@
 - [x] `abs`: absolute function with it's grad func(works on scalars, and arrays)
 - [x] `relu`: rectified linear unit function with it's grad func(works on scalars, and arrays)
 - [x] `sigmoid`: element-wise sigmoid function with it's grad func(works on scalars, and arrays)
+- [x] `__matmul__`: matrix multiplication @ function with it's grad func(works on arrays)
+- [x] `__rmatmul__`: reverse matrix multiplication @ function with it's grad func(works on arrays)
 
 #### [nn.py](/microgradplus/nn.py)
 - [x] `Linear`: represents a linear layer in a neural network. It has a forward pass that computes the dot product of the inputs with the weights and adds the bias, and a backward pass that computes the gradients with respect to the inputs and parameters.
