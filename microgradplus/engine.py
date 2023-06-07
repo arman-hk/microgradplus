@@ -52,10 +52,12 @@ class Value:
         def _grad_fn(grad):
             self_data, other_data = ctx.saved_arrays.values()
             self.grad += (other_data * self_data ** (other_data - 1)) * grad
-            other.grad += np.sum((self.data ** other_data * np.log(self_data)) * grad)
+            if np.any(self_data > 0):
+                other.grad += np.sum((self.data ** other_data * np.log(self_data)) * grad)
+            else:
+                other.grad += 0
         out = Value(self.data ** other.data, (self, other), _grad_fn)
         return out
-
 
     def __neg__(self):
         def _grad_fn(grad):
