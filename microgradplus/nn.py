@@ -14,6 +14,6 @@ class Linear:
 
     def backward(self, grad):
         # grads with respect to inputs and params
-        self.weights.grad += self.x.T @ grad
-        self.bias.grad += np.sum(grad, axis=0)
-        return grad @ self.weights.data.T
+        self.weights.grad += self.x.T.data @ grad.data
+        self.bias.grad += np.sum(grad.data, axis=0)
+        return grad @ self.weights.T
