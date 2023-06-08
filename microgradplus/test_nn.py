@@ -10,4 +10,14 @@ x = Value(np.random.randn(10, input_dim))  # bc = 10
 
 # fp
 out = layer(x)
-print(f"out: {out.data}")
+print(f"out = {out.data}")
+
+# bp
+grad = Value(np.random.randn(10, output_dim))
+dx = layer.backward(grad)
+
+print(f"dx = {dx}")
+
+# grads of the parameters
+print(f"layer.weights.grad: {layer.weights.grad}")
+print(f"layer.bias.grad: {layer.bias.grad}")
