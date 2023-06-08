@@ -127,6 +127,10 @@ class Value:
         
         return other @ self
 
+    @property
+    def T(self):
+        return Value(np.transpose(self.data))
+
     def relu(self):
         def _grad_fn(grad):
             self.grad += (self.data > 0) * grad
