@@ -15,6 +15,7 @@
 - [x] `abs`: absolute function with it's grad func(works on scalars, and arrays)
 - [x] `relu`: rectified linear unit function with it's grad func(works on scalars, and arrays)
 - [x] `sigmoid`: element-wise sigmoid function with it's grad func(works on scalars, and arrays)
+- [x] `tanh`: hyperbolic tangent function with it's grad func(works on scalars, and arrays)
 - [x] `__matmul__`: matrix multiplication @ function with it's grad func(works on arrays)
 - [x] `__rmatmul__`: reverse matrix multiplication @ function
 - [x] `T`: matrix transpose fucnction
