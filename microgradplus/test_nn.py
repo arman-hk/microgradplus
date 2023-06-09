@@ -10,7 +10,7 @@ model = Sequential(
 )
 
 # random input data
-x = Value(np.random.randn(4, 2))  # bc = 4
+x = Value(np.random.randn(4, 2))  # bs = 4
 print(f"x = {x.data}")
 
 # fp
