@@ -1,23 +1,18 @@
 import numpy as np
 from engine import Value
-from nn import Linear
+from nn import Linear, ReLU, Sequential
 
-input_dim, output_dim = 5, 3
-layer = Linear(input_dim, output_dim)
+# define a model
+model = Sequential(
+    Linear(2, 4),
+    ReLU(),
+    Linear(4, 2)
+)
 
 # random input data
-x = Value(np.random.randn(10, input_dim))  # bc = 10
+x = Value(np.random.randn(4, 2))  # bc = 4
+print(f"x = {x.data}")
 
 # fp
-out = layer(x)
+out = model(x)
 print(f"out = {out.data}")
-
-# bp
-grad = Value(np.random.randn(10, output_dim))
-dx = layer.backward(grad)
-
-print(f"dx = {dx}")
-
-# grads of the parameters
-print(f"layer.weights.grad: {layer.weights.grad}")
-print(f"layer.bias.grad: {layer.bias.grad}")
