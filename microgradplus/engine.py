@@ -137,6 +137,12 @@ class Value:
         out = Value(np.maximum(0, self.data), (self,), _grad_fn)
         return out
 
+    def tanh(self):
+        def _grad_fn(grad):
+            self.grad += (1 - (np.tanh(self.data))**2) * grad
+        out = Value(np.tanh(self.data), (self, ), _grad_fn)
+        return out
+
     def sigmoid(self):
         def S(x):
             return 1/(1 + np.exp(-x))
