@@ -17,3 +17,19 @@ class Linear:
         self.weights.grad += self.x.T.data @ grad.data
         self.bias.grad += np.sum(grad.data, axis=0)
         return grad @ self.weights.T
+
+class Sequential:
+    def __init__(self, *layers):
+        # stores layers
+        self.layers = layers
+
+    def __call__(self, x):
+        # forward pass on each layer with the output of the prev layer
+        for layer in self.layers:
+            x = layer(x)
+        return x
+    def backward(self, grad):
+        # backward pass on each layer but in reverse order
+        for layer in reversed(self.layers):
+            grad = layer.backward(grad)
+        return grad
