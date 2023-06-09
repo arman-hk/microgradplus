@@ -21,4 +21,5 @@
 - [x] `T`: matrix transpose fucnction
 
 #### [nn.py](/microgradplus/nn.py)
-- [x] `Linear`: represents a linear layer in a neural network. It has a forward pass that computes the dot product of the inputs with the weights and adds the bias, and a backward pass that computes the gradients with respect to the inputs and parameters.
+- [x] `Linear`: a linear layer in a neural network. It has a forward pass that computes the dot product of the inputs with the weights and adds the bias, and a backward pass that computes the gradients with respect to the inputs and parameters.
+- [x] `Sequential`: an ordered sequence of neural network layers, that simplifies the process of defining, and training a neural network by providing forward and backward passes through the entire network.
