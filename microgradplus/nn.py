@@ -18,6 +18,10 @@ class Linear:
         self.bias.grad += np.sum(grad.data, axis=0)
         return grad @ self.weights.T
 
+class ReLU:
+    def __call__(self, x):
+        return x.relu()
+
 class Sequential:
     def __init__(self, *layers):
         # stores layers
