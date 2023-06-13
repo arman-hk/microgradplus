@@ -1,6 +1,6 @@
 import numpy as np
 from engine import Value
-from nn import Linear, ReLU, Tanh, Sequential
+from nn import Linear, Tanh, Sequential, MSE
 
 # define a model
 model = Sequential(
@@ -16,3 +16,11 @@ print(f"x = {x.data}")
 # fp
 out = model(x)
 print(f"out = {out.data}")
+
+# random targets
+targets = Value(np.random.randn(4, 2)) 
+
+# compute loss
+mse = MSE()
+loss = mse(out, targets)
+print(f"loss = {loss.data}")

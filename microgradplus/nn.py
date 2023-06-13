@@ -1,6 +1,8 @@
 import numpy as np
 from engine import Value
 
+""" Linear Layer """
+
 class Linear:
     def __init__(self, input_dim, output_dim):
         # init weights and biases
@@ -18,6 +20,8 @@ class Linear:
         self.bias.grad += np.sum(grad.data, axis=0)
         return grad @ self.weights.T
 
+""" Activation Functions """
+
 class ReLU:
     def __call__(self, x):
         return x.relu()
@@ -25,6 +29,14 @@ class ReLU:
 class Tanh:
     def __call__(self, x):
         return x.tanh()
+
+""" Loss Functions """
+
+class MSE:
+    def __call__(self, pred, target):
+        return pred.mse(target)
+
+""" Container """
 
 class Sequential:
     def __init__(self, *layers):
