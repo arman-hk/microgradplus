@@ -152,6 +152,13 @@ class Value:
         out = Value(S(self.data), (self,), _grad_fn)
         return out
 
+    def mse(self, target):
+        assert self.data.shape == target.data.shape, "Target size is different to the Input size"
+        diff = self - target
+        diff = diff * diff
+        out = Value((diff.data).sum() / self.data.size, (self, target), _grad_fn=None)
+        return out
+
     def backward(self, grad=None):
         if grad is None: grad = np.ones_like(self.data, dtype=float)
         self.grad = grad
