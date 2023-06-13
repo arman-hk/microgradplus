@@ -36,6 +36,10 @@ class MSE:
     def __call__(self, pred, target):
         return pred.mse(target)
 
+class MAE:
+    def __call__(self, pred, target):
+        return pred.mae(target)
+
 """ Container """
 
 class Sequential:
