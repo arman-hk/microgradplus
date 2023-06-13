@@ -1,11 +1,11 @@
 import numpy as np
 from engine import Value
-from nn import Linear, ReLU, Sequential
+from nn import Linear, ReLU, Tanh, Sequential
 
 # define a model
 model = Sequential(
     Linear(2, 4),
-    ReLU(),
+    Tanh(),
     Linear(4, 2)
 )
 

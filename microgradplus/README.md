@@ -23,4 +23,5 @@
 #### [nn.py](/microgradplus/nn.py)
 - [x] `Linear`: a linear layer in a neural network. It has a forward pass that computes the dot product of the inputs with the weights and adds the bias, and a backward pass that computes the gradients with respect to the inputs and parameters.
 - [x] `ReLU`: ReLU activation based on the `relu` function in engine.
+- [x] `Tanh`: Tanh activation based on the `tanh` function in engine.
 - [x] `Sequential`: an ordered container of neural network layers. It simplifies the process of defining and training a neural network by providing forward and backward passes through all the included layers.

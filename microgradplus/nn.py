@@ -22,6 +22,10 @@ class ReLU:
     def __call__(self, x):
         return x.relu()
 
+class Tanh:
+    def __call__(self, x):
+        return x.tanh()
+
 class Sequential:
     def __init__(self, *layers):
         # stores layers
