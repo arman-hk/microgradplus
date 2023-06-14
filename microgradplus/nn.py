@@ -40,6 +40,18 @@ class MAE:
     def __call__(self, pred, target):
         return pred.mae(target)
 
+""" Optimization Algorithms """
+
+class SGD:
+    def __init__(self, params, lr):
+        self.params = params
+        self.lr = lr
+    def step(self):
+        for p in params:
+            if p is not None:
+                p.data -= self.lr * p.grad
+                p.grad = None # clear grad for the next iter
+
 """ Container """
 
 class Sequential:
