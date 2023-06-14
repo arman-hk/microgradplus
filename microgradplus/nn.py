@@ -20,6 +20,9 @@ class Linear:
         self.bias.grad += np.sum(grad.data, axis=0)
         return grad @ self.weights.T
 
+    def parameters(self):
+        return [self.weights, self.bias]
+
 """ Activation Functions """
 
 class ReLU:
@@ -46,6 +49,7 @@ class SGD:
     def __init__(self, params, lr):
         self.params = params
         self.lr = lr
+    
     def step(self):
         for p in params:
             if p is not None:
@@ -64,8 +68,18 @@ class Sequential:
         for layer in self.layers:
             x = layer(x)
         return x
+    
     def backward(self, grad):
         # backward pass on each layer but in reverse order
         for layer in reversed(self.layers):
-            grad = layer.backward(grad)
+            if hasattr(layer, 'backward'):
+                grad = layer.backward(grad)
         return grad
+    
+    def parameters(self):
+        # iterate over layers and collect their parameters
+        params = []
+        for layer in self.layers:
+            if hasattr(layer, 'parameters'):
+                params.extend(layer.parameters())
+        return params
