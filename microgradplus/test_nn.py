@@ -1,26 +1,43 @@
 import numpy as np
 from engine import Value
-from nn import Linear, Tanh, Sequential, MAE
+from nn import Linear, ReLU, Sequential, MAE, SGD
 
 # define a model
 model = Sequential(
     Linear(2, 4),
-    Tanh(),
+    ReLU(),
     Linear(4, 2)
 )
+
+# define a optimizer
+optimizer = SGD(model.parameters(), lr=0.01)
 
 # random input data
 x = Value(np.random.randn(4, 2))  # bs = 4
 print(f"x = {x.data}")
 
+# random targets
+targets = Value(np.random.randn(4, 2))
+
 # fp
 out = model(x)
-print(f"out = {out.data}")
+print(f"out (before SGD) = {out.data}")
 
-# random targets
-targets = Value(np.random.randn(4, 2)) 
+# loss
+mae = MAE()
+loss = mae(out, targets)
+print(f"loss (before SGD step) = {loss.data}")
 
-# compute loss
-mse = MAE()
-loss = mse(out, targets)
-print(f"loss = {loss.data}")
+# bp
+loss.backward()
+"""
+# optimizer step
+optimizer.step()
+
+# fp after SGD
+out = model(x)
+print(f"out (after SGD) = {out.data}")
+
+# loss after SGD
+loss = mae(out, targets)
+print(f"loss (after SGD) = {loss.data}")"""
