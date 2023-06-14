@@ -28,4 +28,5 @@
 - [x] `Tanh`: Tanh activation based on the `tanh` function in engine.
 - [x] `MSE`: MSE loss based on the `mse` function in engine.
 - [c] `MAE`: MAE loss based on the `mae` function in engine.
+- [x] `SGD`: Stochastic gradient descent (SGD) optimzation algorithm.
 - [x] `Sequential`: an ordered container of neural network layers. It simplifies the process of defining and training a neural network by providing forward and backward passes through all the included layers.

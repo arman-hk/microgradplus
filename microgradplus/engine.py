@@ -1,7 +1,7 @@
 import numpy as np
 
 class Context:
-    """Array info for backprop"""
+    """Stores given arrays for a future call to Value.backward"""
     
     def __init__(self):
         self.saved_arrays = {}
