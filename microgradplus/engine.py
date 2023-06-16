@@ -151,19 +151,11 @@ class Value:
             self.grad += (S(self.data) * (1 - S(self.data))) * grad
         out = Value(S(self.data), (self,), _grad_fn)
         return out
-
-    def mse(self, target):
-        assert self.data.shape == target.data.shape, "Target size is different to the Input size"
-        diff = self - target
-        diff = diff * diff
-        out = Value((diff.data).sum() / self.data.size, (self, target), _grad_fn=None)
-        return out
-
-    def mae(self, target):
-        assert self.data.shape == target.data.shape, "Target size is different to the Input size"
-        diff = self - target
-        diff = diff.abs()
-        out = Value((diff.data).sum() / self.data.size, (self, target), _grad_fn=None)
+    
+    def mean(self):
+        def _grad_fn(grad):
+            self.grad += grad / np.size(self.data)
+        out = Value(np.mean(self.data), (self,), _grad_fn)
         return out
 
     def backward(self, grad=None):

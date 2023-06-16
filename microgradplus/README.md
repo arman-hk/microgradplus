@@ -19,8 +19,7 @@
 - [x] `__matmul__`: matrix multiplication @ function with it's grad func(works on arrays)
 - [x] `__rmatmul__`: handles the case when the `Value` instance is on the right side of the matmul operation
 - [x] `T`: matrix transpose function
-- [x] `mse`: mean squared error between the predicted outputs of the neural network and the actual target values
-- [x] `mse`: mean absolute error between the predicted outputs of the neural network and the actual target values
+- [x] `mean`: mean function with it's grad func(works on scalars, and arrays)
 
 #### [nn.py](/microgradplus/nn.py)
 - [x] `Linear`: a linear layer in a neural network. It has a forward pass that computes the dot product of the inputs with the weights and adds the bias, and a backward pass that computes the gradients with respect to the inputs and parameters.
