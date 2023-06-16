@@ -9,7 +9,7 @@ model = Sequential(
     Linear(4, 2)
 )
 
-# define a optimizer
+# optimizer
 optimizer = SGD(model.parameters(), lr=0.01)
 
 # random input data
@@ -30,7 +30,7 @@ print(f"loss (before SGD step) = {loss.data}")
 
 # bp
 loss.backward()
-"""
+
 # optimizer step
 optimizer.step()
 
@@ -40,4 +40,4 @@ print(f"out (after SGD) = {out.data}")
 
 # loss after SGD
 loss = mae(out, targets)
-print(f"loss (after SGD) = {loss.data}")"""
+print(f"loss (after SGD) = {loss.data}")

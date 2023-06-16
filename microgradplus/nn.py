@@ -12,20 +12,14 @@ class Linear:
     def __call__(self, x):
         # forward pass
         self.x = x
-        print(f"Input shape: {x.data.shape}")
-        print(f"Weight shape: {self.weights.data.shape}")
-        print(f"Bias shape: {self.bias.data.shape}")
         out = x @ self.weights + self.bias
-        print(f"Output shape: {out.data.shape}")
         return out
 
     def backward(self, grad):
         # grads with respect to inputs and params
-        print(f"Input grad shape: {grad.data.shape}")
-        self.weights.grad += self.x.T.data @ grad.data
-        self.bias.grad += np.sum(grad.data, axis=0)
-        grad_out = grad @ self.weights.T
-        print(f"Output grad shape: {grad_out.data.shape}")
+        self.weights.grad += self.x.T @ grad
+        self.bias.grad += np.sum(grad, axis=0)
+        grad_out = grad @ self.weights.T.data
         return grad_out
 
     def parameters(self):
