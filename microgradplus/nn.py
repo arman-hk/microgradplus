@@ -12,13 +12,21 @@ class Linear:
     def __call__(self, x):
         # forward pass
         self.x = x
-        return x @ self.weights + self.bias
+        print(f"Input shape: {x.data.shape}")
+        print(f"Weight shape: {self.weights.data.shape}")
+        print(f"Bias shape: {self.bias.data.shape}")
+        out = x @ self.weights + self.bias
+        print(f"Output shape: {out.data.shape}")
+        return out
 
     def backward(self, grad):
         # grads with respect to inputs and params
+        print(f"Input grad shape: {grad.data.shape}")
         self.weights.grad += self.x.T.data @ grad.data
         self.bias.grad += np.sum(grad.data, axis=0)
-        return grad @ self.weights.T
+        grad_out = grad @ self.weights.T
+        print(f"Output grad shape: {grad_out.data.shape}")
+        return grad_out
 
     def parameters(self):
         return [self.weights, self.bias]
@@ -35,13 +43,13 @@ class Tanh:
 
 """ Loss Functions """
 
-class MSE:
-    def __call__(self, pred, target):
-        return pred.mse(target)
-
 class MAE:
     def __call__(self, pred, target):
-        return pred.mae(target)
+        self.diff = pred - target
+        return self.diff.abs().mean()
+
+    def backward(self, grad=None):
+        return self.diff.sign().data / self.diff.size
 
 """ Optimization Algorithms """
 
@@ -51,7 +59,7 @@ class SGD:
         self.lr = lr
     
     def step(self):
-        for p in params:
+        for p in self.params:
             if p is not None:
                 p.data -= self.lr * p.grad
                 p.grad = None # clear grad for the next iter

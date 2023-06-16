@@ -26,6 +26,9 @@ class Value:
         ctx.save_for_backward(self.data, other.data)
 
         def _grad_fn(grad):
+            print(f"Self grad shape: {self.grad.data.shape}")
+            print(f"Other grad shape: {other.grad.data.shape}")
+            print(f"Grad shape: {grad.data.shape}")
             self_data, other_data = ctx.saved_arrays.values()
             self.grad += grad
             other.grad += grad
